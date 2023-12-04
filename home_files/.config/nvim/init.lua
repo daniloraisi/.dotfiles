@@ -1,2 +1,11 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+pcall(require, "config.env")
+
+require("config.lazy")({
+    debug = false,
+    profilling = {
+        loader = false,
+        require = false,
+    },
+})
+
+require("util.dashboard").setup()

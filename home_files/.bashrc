@@ -11,7 +11,7 @@ if ! test -v ZELLIJ && test -v SSH_CONNECTION; then {
 	}; fi
 
 	exec zellij attach
-}; elif test "$PPID" == "$(pgrep -f '/ide/xterm/bin/node /ide/xterm/index.cjs' | head -n1)" && [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then {
+}; elif (test "$PPID" == "$(pgrep -f '/ide/xterm/bin/node /ide/xterm/index.cjs' | head -n1)" || test "$TERM" == "xterm") && [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then {
 	exec tmux new-session -A -s ${USER} -c "${HOME_DIR}" >/dev/null 2>&1
 }; fi
 

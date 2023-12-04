@@ -33,8 +33,10 @@ SCRIPT
 ) >/dev/null 2>&1
 
 (
-	command -v fish >/dev/null || sudo add-apt-repository -y ppa:fish-shell/release-3 && sudo apt install -yq fish
-	command -v tmux >/dev/null || sudo apt install -yq tmux
+	sudo bash <<'SCRIPT'
+command -v fish >/dev/null || add-apt-repository -y ppa:fish-shell/release-3 && apt install -yq fish
+command -v tmux >/dev/null || apt install -yq tmux
+SCRIPT
 
 	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 	"$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
@@ -51,10 +53,11 @@ SCRIPT
 ) >/dev/null 2>&1 &
 
 (
-	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-	tar zxf nvim-linux64.tar.gz
-	sudo mv nvim-linux64 /usr/local/nvim-linux
-	sudo ln -s /usr/local/nvim-linux/bin/nvim /usr/local/bin/nvim
-	rm -rf nvim-linux64.tar.gz
+	sudo bash <<'SCRIPT'
+cd /tmp
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+tar zxf nvim-linux64.tar.gz
+mv nvim-linux64 /usr/local/nvim-linux
+ln -s /usr/local/nvim-linux/bin/nvim /usr/local/bin/nvim
+SCRIPT
 ) >/dev/null 2>&1 &
-
