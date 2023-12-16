@@ -60,4 +60,8 @@ tar zxf nvim-linux64.tar.gz
 mv nvim-linux64 /usr/local/nvim-linux
 ln -s /usr/local/nvim-linux/bin/nvim /usr/local/bin/nvim
 SCRIPT
+
+	git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+	git clone https://github.com/daniloraisi/astronvim ~/.config/nvim/lua/user
+	nvim --headless -c 'quitall'
 ) >/dev/null 2>&1 &
