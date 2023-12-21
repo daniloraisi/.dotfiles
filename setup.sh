@@ -49,7 +49,7 @@ SCRIPT
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	)
 
-	/home/linuxbrew/.linuxbrew/bin/brew install starship bat exa fd ripgrep fzf procs zoxide lazygit asdf
+	/home/linuxbrew/.linuxbrew/bin/brew install starship bat exa fd ripgrep fzf procs zoxide lazygit asdf luarocks
 ) >/dev/null 2>&1 &
 
 (
