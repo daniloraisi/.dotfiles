@@ -121,7 +121,7 @@ cd /tmp
 git clone https://aur.archlinux.org/paru-bin
 cd paru-bin
 makepkg -si
-paru -S --needed hyprland-git waybar-git rofi-lbonn-wayland-git kitty swww-git pipewire-{pulse,jack,alsa} wireplumber pavucontrol mwg-look-bin nautilus dunst playerctl wttrbar qt5-imageformats polkit-kde-agent xdg-desktop-portal-hyprland-git qt{5,6}-wayland cliphist sddm-git
+paru -S --needed hyprland-git waybar-git rofi-lbonn-wayland-git kitty swww-git pipewire-{pulse,jack,alsa} wireplumber pavucontrol mwg-look-bin nautilus dunst playerctl wttrbar qt5-imageformats polkit-kde-agent xdg-desktop-portal-hyprland-git qt{5,6}-wayland cliphist sddm-git microsoft-edge-stable-bin
 systemctl enable sddm.service
 SCRIPT
 	)
