@@ -1,4 +1,4 @@
-alias ls "eza -1lagh --git --color automatic --icons"
+alias ls "eza -1lagh --git --color=auto --icons=auto"
 alias ps procs
 
 abbr g git
