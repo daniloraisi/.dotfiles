@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+
+#                                                                                           
+#  ,--.             ,--.        ,--,--.    ,------.         ,--. ,------,--,--.             
+#  |  ,--,--, ,---,-'  '-.,--,--|  |  |    |  .-.  \ ,---.,-'  '-|  .---`--|  |,---. ,---.  
+#  |  |      (  .-'-.  .-' ,-.  |  |  |    |  |  \  | .-. '-.  .-|  `--,,--|  | .-. (  .-'  
+#  |  |  ||  .-'  `)|  | \ '-'  |  |  |    |  '--'  ' '-' ' |  | |  |`  |  |  \   --.-'  `) 
+#  `--`--''--`----' `--'  `--`--`--`--'    `-------' `---'  `--' `--'   `--`--'`----`----'  
+#                                                                                           
 (
 	current_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 	dotfiles_source="${current_dir}/home_files"
@@ -19,19 +27,30 @@
 	done < <(find "${dotfiles_source}" -type f)
 ) >/dev/null 2>&1
 
+
+#                                                                           
+#  ,--.             ,--.        ,--,--.    ,-------.     ,--,--,--.    ,--. 
+#  |  ,--,--, ,---,-'  '-.,--,--|  |  |    `--.   / ,---.|  |  `--'    |  | 
+#  |  |      (  .-'-.  .-' ,-.  |  |  |      /   / | .-. |  |  ,--,--. |  | 
+#  |  |  ||  .-'  `)|  | \ '-'  |  |  |     /   `--\   --|  |  |  |  '-'  / 
+#  `--`--''--`----' `--'  `--`--`--`--'    `-------'`----`--`--`--'`-----'  
+#                                                                           
 (
 	sudo bash <<'SCRIPT'
 # Install latest static zellij
 curl -L "https://github.com/zellij-org/zellij/releases/latest/download/zellij-x86_64-unknown-linux-musl.tar.gz" |
   tar -C /usr/bin -xzf - zellij
-
-# Install gitpod.zellij plugin
-plugin_path="/usr/bin/gitpod_zellij"
-curl -L "https://github.com/axonasif/gitpod.zellij/releases/latest/download/gitpod_zellij-x86_64-unknown-linux-musl.tar.gz" |
-  tar -C /usr/bin -xzf - gitpod_zellij
 SCRIPT
 ) >/dev/null 2>&1
 
+
+#                                                                       ,--.                                     
+#  ,--.             ,--.        ,--,--.    ,------,--.     ,--.        /  ,--------,--.   ,--,--. ,--,--.   ,--. 
+#  |  ,--,--, ,---,-'  '-.,--,--|  |  |    |  .---`--',---.|  ,---.   /  /'--.  .--|   `.'   |  | |  |\  `.'  /  
+#  |  |      (  .-'-.  .-' ,-.  |  |  |    |  `--,,--(  .-'|  .-.  | /  /    |  |  |  |'.'|  |  | |  | .'    \   
+#  |  |  ||  .-'  `)|  | \ '-'  |  |  |    |  |`  |  .-'  `|  | |  |/  /     |  |  |  |   |  '  '-'  '/  .'.  \  
+#  `--`--''--`----' `--'  `--`--`--`--'    `--'   `--`----'`--' `--/  /      `--'  `--'   `--'`-----''--'   '--' 
+#                                                                 `--'                                           
 (
 	sudo bash <<'SCRIPT'
 command -v fish >/dev/null || add-apt-repository -y ppa:fish-shell/release-3 && apt install -yq fish
@@ -44,6 +63,14 @@ SCRIPT
 	rm -rf ~/.bash_history && ln -s /dev/null ~/.bash_history
 ) >/dev/null 2>&1 &
 
+
+#                                                                                                      
+#  ,--.             ,--.        ,--,--.    ,--.  ,--.                    ,--.                          
+#  |  ,--,--, ,---,-'  '-.,--,--|  |  |    |  '--'  |,---.,--,--,--.,---.|  |-.,--.--.,---.,--.   ,--. 
+#  |  |      (  .-'-.  .-' ,-.  |  |  |    |  .--.  | .-. |        | .-. | .-. |  .--| .-. |  |.'.|  | 
+#  |  |  ||  .-'  `)|  | \ '-'  |  |  |    |  |  |  ' '-' |  |  |  \   --| `-' |  |  \   --|   .'.   | 
+#  `--`--''--`----' `--'  `--`--`--`--'    `--'  `--'`---'`--`--`--'`----'`---'`--'   `----'--'   '--' 
+#                                                                                                      
 (
 	command -v brew >/dev/null || (
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -52,6 +79,14 @@ SCRIPT
 	/home/linuxbrew/.linuxbrew/bin/brew install starship bat eza fd ripgrep fzf procs zoxide lazygit asdf luarocks helix
 ) >/dev/null 2>&1 &
 
+
+#                                                                          
+#  ,--.             ,--.        ,--,--.    ,--.  ,--.        ,--.          
+#  |  ,--,--, ,---,-'  '-.,--,--|  |  |    |  ,'.|  ,--.  ,--`--,--,--,--. 
+#  |  |      (  .-'-.  .-' ,-.  |  |  |    |  |' '  |\  `'  /,--|        | 
+#  |  |  ||  .-'  `)|  | \ '-'  |  |  |    |  | `   | \    / |  |  |  |  | 
+#  `--`--''--`----' `--'  `--`--`--`--'    `--'  `--'  `--'  `--`--`--`--' 
+#                                                                          
 (
 	sudo bash <<'SCRIPT'
 cd /tmp
@@ -65,3 +100,24 @@ SCRIPT
 	git clone https://github.com/daniloraisi/astronvim ~/.config/nvim/lua/user
 	nvim --headless -c 'quitall'
 ) >/dev/null 2>&1 &
+
+
+#                                                                            
+#    ,---.            ,--.          ,---.                  ,--.,---,--.      
+#   /  O  \,--.--.,---|  ,---.     '   .-' ,---. ,---. ,---`--/  .-`--',---. 
+#  |  .-.  |  .--| .--|  .-.  |    `.  `-.| .-. | .-. | .--,--|  `-,--| .--' 
+#  |  | |  |  |  \ `--|  | |  |    .-'    | '-' \   --\ `--|  |  .-|  \ `--. 
+#  `--' `--`--'   `---`--' `--'    `-----'|  |-' `----'`---`--`--' `--'`---' 
+#                                         `--'                               
+if command -v pacman >/dev/null; then {
+	(
+		sudo bash <<'SCRIPT'
+pacman -S --needed git base-devel wget curl tmux fish
+cd /tmp
+git clone https://aur.archlinux.org/paru-bin
+cd paru-bin
+makepkg -si
+paru -S --needed hyprland waybar rofi-lbonn-wayland kitty swww pipewire-{pulse,jack,alsa} wireplumber pavucontrol mwg-look-bin nautilus dunst playerctl wttrbar qt5-imageformats
+SCRIPT
+	) >/dev/null 2>&1 &
+}
