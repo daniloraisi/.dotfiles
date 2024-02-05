@@ -51,17 +51,19 @@ SCRIPT
 #  |  |  ||  .-'  `)|  | \ '-'  |  |  |    |  |`  |  .-'  `|  | |  |/  /     |  |  |  |   |  '  '-'  '/  .'.  \  
 #  `--`--''--`----' `--'  `--`--`--`--'    `--'   `--`----'`--' `--/  /      `--'  `--'   `--'`-----''--'   '--' 
 #                                                                 `--'                                           
-(
-	sudo bash <<'SCRIPT'
+if command -v apt >/dev/null; then {
+	(
+		sudo bash <<'SCRIPT'
 command -v fish >/dev/null || add-apt-repository -y ppa:fish-shell/release-3 && apt install -yq fish
 command -v tmux >/dev/null || apt install -yq tmux
 SCRIPT
 
-	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	"$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
+		git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+		"$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
-	rm -rf ~/.bash_history && ln -s /dev/null ~/.bash_history
-) >/dev/null 2>&1 &
+		rm -rf ~/.bash_history && ln -s /dev/null ~/.bash_history
+	) >/dev/null 2>&1 &
+ }; fi
 
 
 #                                                                                                      
@@ -101,7 +103,6 @@ SCRIPT
 	nvim --headless -c 'quitall'
 ) >/dev/null 2>&1 &
 
-
 #                                                                            
 #    ,---.            ,--.          ,---.                  ,--.,---,--.      
 #   /  O  \,--.--.,---|  ,---.     '   .-' ,---. ,---. ,---`--/  .-`--',---. 
@@ -109,6 +110,9 @@ SCRIPT
 #  |  | |  |  |  \ `--|  | |  |    .-'    | '-' \   --\ `--|  |  .-|  \ `--. 
 #  `--' `--`--'   `---`--' `--'    `-----'|  |-' `----'`---`--`--' `--'`---' 
 #                                         `--'                               
+#  ==========================================================================
+#  This step is not executed in background
+#  ==========================================================================
 if command -v pacman >/dev/null; then {
 	(
 		sudo bash <<'SCRIPT'
@@ -117,7 +121,8 @@ cd /tmp
 git clone https://aur.archlinux.org/paru-bin
 cd paru-bin
 makepkg -si
-paru -S --needed hyprland waybar rofi-lbonn-wayland kitty swww pipewire-{pulse,jack,alsa} wireplumber pavucontrol mwg-look-bin nautilus dunst playerctl wttrbar qt5-imageformats
+paru -S --needed hyprland-git waybar-git rofi-lbonn-wayland-git kitty swww-git pipewire-{pulse,jack,alsa} wireplumber pavucontrol mwg-look-bin nautilus dunst playerctl wttrbar qt5-imageformats polkit-kde-agent xdg-desktop-portal-hyprland-git qt{5,6}-wayland cliphist sddm-git
+systemctl enable sddm.service
 SCRIPT
-	) >/dev/null 2>&1 &
-}
+	)
+}; fi
