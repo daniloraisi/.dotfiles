@@ -116,13 +116,14 @@ SCRIPT
 if command -v pacman >/dev/null; then {
 	(
 		sudo bash <<'SCRIPT'
-pacman -S --needed git base-devel wget curl tmux fish
+pacman -S --needed --noconfirm git base-devel wget curl tmux fish
+SCRIPT
+    bash <<'SCRIPT'
 cd /tmp
 git clone https://aur.archlinux.org/paru-bin
 cd paru-bin
-makepkg -si
-paru -S --needed hyprland-git waybar-git rofi-lbonn-wayland-git kitty swww-git pipewire-{pulse,jack,alsa} wireplumber pavucontrol mwg-look-bin nautilus dunst playerctl wttrbar qt5-imageformats polkit-kde-agent xdg-desktop-portal-hyprland-git qt{5,6}-wayland cliphist sddm-git microsoft-edge-stable-bin
-systemctl enable sddm.service
+makepkg -si --noconfirm
+paru -S --needed hyprland waybar rofi-lbonn-wayland kitty swww pipewire-{pulse,jack,alsa} wireplumber pavucontrol nwg-look-bin nautilus dunst playerctl wttrbar qt5-imageformats polkit-kde-agent xdg-desktop-portal-hyprland qt{5,6}-wayland cliphist sddm microsoft-edge-stable-bin
 SCRIPT
 	)
 }; fi
