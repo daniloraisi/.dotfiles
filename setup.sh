@@ -56,7 +56,7 @@ paru -S --needed --noconfirm \
 	hyprland waybar rofi-lbonn-wayland kitty pipewire-{pulse,jack,alsa} wireplumber xdg-desktop-portal-{hyprland,gtk}	swww pavucontrol \
 	nwg-look-bin nautilus dunst playerctl wttrbar qt5-imageformats polkit-kde-agent xdg-desktop-portal-hyprland qt{5,6}-wayland \
 	cliphist sddm-git microsoft-edge-stable-bin swaylock-effects-git grim slurp swappy light-git pamixer wttrbar keychain \
-	catppuccin-gtk-theme-macchiato sevi-icon-theme-full ttf-jetbrains-mono-nerd swayidle-git
+	catppuccin-gtk-theme-macchiato sevi-icon-theme-full ttf-jetbrains-mono-nerd swayidle-git input-remapper-git
 SCRIPT
 	)
 }; fi
