@@ -1,26 +1,13 @@
 #!/usr/bin/env sh
-
-if ! [ -x "$(command -v light) ]; then
-  notify-send "light command not found"
-  exit 1
-fi
-
-light -A 5
-notify-send "$(light -G)"
-
-#!/usr/bin/env sh
-
 down() {
   light -U 5
   brightness=$(light -G)
-  [$brightness -gt 0] && brightness=`expr $brightness`
   notify-send -a "BRIGHTNESS" "Decreasing to $brightness%" -h int:value:"$brightness" -i display-brightness-symbolic -r 2593 -u normal
 }
 
 up() {
   light -A 5
   brightness=$(light -G)
-  [brightness -lt 100] && brightness=`expr $brightness`
   notify-send -a "brightness" "Increasing to $brightness%" -h int:value:"$brightness" -i display-brightness-symbolic -r 2593 -u normal
 }
 
