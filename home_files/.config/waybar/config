@@ -1,0 +1,150 @@
+{
+	"height": 50, 
+	"layer": "top",
+	"margin-top": 5,
+	"margin-left": 5,
+	"margin-bottom": 0,
+	"margin-right": 5,
+	"spacing": 8,
+	"modules-left": ["custom/launcher", "custom/focus", "hyprland/workspaces", "clock", "custom/media"],
+	"modules-center": [],
+	"modules-right": ["tray", "custom/weather", "memory" ,"cpu", "pulseaudio", "battery", "network", "custom/power-menu"],
+
+	// workspace config,
+	"hyprland/workspaces": {
+		"format": "{icon}",
+		"on-click": "activate",
+		"format-icons": {
+		"1": "",
+		"2": "",
+		"3": "",
+		"4": "",
+		"5": "",
+		"6": "",
+		"7": "",
+		"8": "",
+		"9": "",
+		"urgent": "",
+		"active": "",
+		"default": ""
+		}
+	},
+
+	// modules-right
+	"pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "  {volume}%",
+        "format-bluetooth-muted": "󰝟 ",
+		"format-muted": "󰝟 ",
+		"format-icons": {
+				"default": ["", "", ""],
+				"headphone": ["", "", ""]
+		},
+		"on-click": "pavucontrol",
+		"on-double-click": "pkill -9 pavucontrol"
+	},
+	"cpu": {
+		"interval": 10,
+		"format": "  {}%",
+		"max-length": 10,
+		"on-double-click": "bash $HOME/.config/waybar/scripts/performance.sh"
+    },
+	"memory": {
+		"interval": 30,
+		"format": " {}%",
+		"format-alt":" {used:0.1f}G",
+		"max-length": 10
+    },
+	"battery": {
+		"bat": "BAT0",
+		"adapter": "ADP0",
+		"interval": 60,
+		"states": {
+			"warning":  30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-warning": "{icon} {capacity}%",
+		"format-critical": "{icon} {capacity}%",
+		"format-charging": "<span font-family='Font Awesome 6 Free'></span> {capacity}%",
+		"format-plugged": "  {capacity}%",
+		"format-alt": "{icon} {time}",
+		"format-full": "  {capacity}%",
+		"format-icons": [" ", " ", " ", " ", " "]
+	},
+	"tray": {
+		"spacing": 15
+	},
+
+	// modules-center
+	"clock": {
+		"format": "{:%A, %d %B, %Y (%R)}",
+		"format-alt": "{:%H:%M}  ",
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"calendar": {
+			"mode"          : "year",
+			"mode-mon-col"  : 3,
+			"weeks-pos"     : "right",
+			"on-scroll"     : 1,
+			"on-click-right": "mode",
+			"format": {
+				"months":     "<span color='#ffead3'><b>{}</b></span>",
+				"days":       "<span color='#ecc6d9'><b>{}</b></span>",
+				"weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+				"weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+				"today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+			}
+		},
+		"actions":  {
+			"on-click-right": "mode",
+			"on-click-forward": "tz_up",
+			"on-click-backward": "tz_down",
+			"on-scroll-up": "shift_up",
+			"on-scroll-down": "shift_down"
+		}
+    },
+
+	//powermenu
+	"custom/power-menu": {
+		"format": "⏻",
+		"on-double-click": "bash $HOME/.config/waybar/scripts/power.sh"
+	},
+
+	// launcher
+	"custom/launcher": {
+        "format": "<span color='#c6a0f6'></span>",
+		"on-double-click": "rofi -show drun"
+	},
+
+	"network": {
+        "format-wifi": "󰖩 {signalStrength}%",
+		"format-ethernet": "󰈀 wired",
+		"on-double-click": "bash ~/.config/waybar/scripts/network.sh",
+		"format-disconnected": "Disconnected  "
+	},
+	"custom/focus": {
+		"format": "",
+		"on-click": "bash ~/.config/waybar/scripts/sleep.sh pause",
+		"on-click-right": "bash ~/.config/waybar/scripts/sleep.sh resume"
+	},
+	"custom/weather": {
+    	"format": "{} °",
+    	"tooltip": true,
+    	"interval": 3600,
+    	"exec": "wttrbar",
+    	"return-type": "json"
+	},
+	"custom/media": {
+		"format": "{icon} {}",
+		"return-type": "json",
+		"max-length": 32,
+		"escape": true,
+		"format-icons": {
+			"default": " "
+		},
+		"on-click": "playerctl play-pause",
+		"on-click-right": "playerctl next",
+		"on-click-middle": "playerctl previous",
+		"exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
+	},
+}
