@@ -91,6 +91,5 @@ SCRIPT
   rm -rf ~/.cache/nvim
 	git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
 	git clone https://github.com/daniloraisi/astronvim ~/.config/nvim/lua/user
-	nvim --headless -c 'quitall'
 )
 
