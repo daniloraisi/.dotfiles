@@ -2,7 +2,7 @@
 
 entries="  Logout\n⏾ Suspend\n󰑓 Reboot\n Shutdown"
 
-selected=$(echo -e $entries|rofi -dmenu --cache-file /dev/null | awk '{print tolower($2)}')
+selected=$(echo -e $entries|rofi -i -dmenu --cache-file /dev/null | awk '{print tolower($2)}')
 
 case $selected in
     logout)

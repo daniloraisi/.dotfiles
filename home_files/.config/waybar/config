@@ -38,10 +38,7 @@
         "format-bluetooth": "  {volume}%",
         "format-bluetooth-muted": "󰝟 ",
 		"format-muted": "󰝟 ",
-		"format-icons": {
-				"default": ["", "", ""],
-				"headphone": ["", "", ""]
-		},
+		"format-icons": ["", "", ""],
 		"on-click": "pavucontrol",
 		"on-double-click": "pkill -9 pavucontrol"
 	},
