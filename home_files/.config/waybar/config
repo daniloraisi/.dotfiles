@@ -8,7 +8,7 @@
 	"spacing": 8,
 	"modules-left": ["custom/launcher", "custom/focus", "hyprland/workspaces", "clock", "custom/media"],
 	"modules-center": [],
-	"modules-right": ["tray", "custom/weather", "memory" ,"cpu", "pulseaudio", "battery", "network", "custom/power-menu"],
+	"modules-right": ["tray", "custom/weather", "memory" ,"cpu", "wireplumber", "battery", "network", "custom/power-menu"],
 
 	// workspace config,
 	"hyprland/workspaces": {
@@ -33,10 +33,8 @@
 	},
 
 	// modules-right
-	"pulseaudio": {
+	"wireplumber": {
         "format": "{icon} {volume}%",
-        "format-bluetooth": "  {volume}%",
-        "format-bluetooth-muted": "󰝟 ",
 		"format-muted": "󰝟 ",
 		"format-icons": ["", "", ""],
 		"on-click": "pavucontrol",
