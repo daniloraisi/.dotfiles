@@ -128,7 +128,7 @@
     	"format": "{} °",
     	"tooltip": true,
     	"interval": 3600,
-    	"exec": "wttrbar",
+    	"exec": "wttrbar --location Jundiai",
     	"return-type": "json"
 	},
 	"custom/media": {

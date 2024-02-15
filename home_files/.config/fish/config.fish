@@ -2,7 +2,7 @@ eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 starship init fish | source
 zoxide init fish | source
 
-set -fx EDITOR helix
+set -fx EDITOR hx
 set -gx QT_STYLE_OVERRIDE kvantum
 set -gx BAT_THEME Catppuccin-macchiato
 set -x STARSHIP_CONFIG ~/.config/starship/starship.toml 

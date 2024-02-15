@@ -30,6 +30,7 @@ auto-format = true
 comment-token = "//"
 language-servers = ["gopls"]
 indent = { tab-width = 4, unit = "\t" }
+formatter = { command = "goimports" }
 
 [[language]]
 name = "astro"
@@ -67,3 +68,11 @@ args = ["--stdio"]
 [language-server.deno]
 command = "deno"
 args = ["lsp"]
+
+[language-server.yaml-language-server.config.yaml]
+format = { enable = true }
+validation = true
+
+[language-server.yaml-language-server.config.yaml.schemas]
+"https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
+"https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" = "docker-compose.{yml,yaml}"
