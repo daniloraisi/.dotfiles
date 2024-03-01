@@ -13,8 +13,7 @@ configuration {
     sidebar-mode:     false;
 }
 
-@import "~/.config/rofi/arc_dark_colors.rasi"
-
+@import "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
 
 window {
     background-color: @background;

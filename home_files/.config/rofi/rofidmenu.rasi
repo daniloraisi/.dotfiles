@@ -12,7 +12,7 @@ configuration {
     window-format:       "{w} | {c} | {t}";
 }
 
-@import "~/.config/rofi/arc_dark_transparent_colors.rasi"
+@import "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
 
 window {
     background-color: @background;

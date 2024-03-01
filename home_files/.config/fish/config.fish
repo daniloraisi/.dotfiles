@@ -32,6 +32,8 @@ source $source_dir/env.fish
 source $source_dir/aliases.fish
 source $source_dir/git.fish
 
+theme_gruvbox "dark" "hard"
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/danilo/google-cloud-sdk/path.fish.inc' ]
      source '/home/danilo/google-cloud-sdk/path.fish.inc'
