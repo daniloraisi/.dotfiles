@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+
+set -u
+
+dotfiles=
+packages=
+homebrew=
+hbpackages=
+
+help() {
+	cat << EOF
+usage: $0 [OPTIONS]
+	--help  Show this message
+	--all   Install dotfiles, Packages, Homebrew
+	--dot   Install dotfiles (symlinked)
+	--pkg   Install Packages
+	--hbp   Install Homebrew with Packages
+	--hb    Install Homebrew
+EOF
+}
+
+if [ $# -eq 0 ]; then
+	help
+	exit 0
+fi
+
+for opt in "$@"; do
+	case $opt in
+		--help)
+			help
+			exit 0
+			;;
+		--all)
+			dotfiles=1
+			packages=1
+			hbpackages=1
+			break
+			;;
+		--dot)  dotfiles=1    ;;
+		--pkg)  packages=1    ;;
+		--hbp)  hbpackages=1  ;;
+		--hb)   homebrew=1    ;;
+		*)
+			echo "Unknown option: $opt"
+			help
+			exit 1
+			;;
+	esac
+done
+
+#==================#
+# Install DotFiles #
+#==================#
+dotfiles() {
+	current_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+	dotfiles_source="${current_dir}/home_files"
+
+	while read -r file; do
+
+		relative_file_path="${file#"${dotfiles_source}"/}"
+		target_file="${HOME}/${relative_file_path}"
+		target_dir="${target_file%/*}"
+
+		if test ! -d "${target_dir}"; then
+			mkdir -p "${target_dir}"
+		fi
+
+		printf 'Installing dotfiles symlink %s\n' "${target_file}"
+		ln -sf "${file}" "${target_file}"
+
+	done < <(find "${dotfiles_source}" -type f)
+}
+
+#==================#
+# Install Packages #
+#==================#
+packages() {
+	sudo bash <<'SCRIPT'
+pacman -S --needed --noconfirm git base-devel wget curl tmux fish zsh keychain
+SCRIPT
+
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+	$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
+	
+	rm -rf ~/.bash_history && ln -s /dev/null ~/.bash_history
+
+   bash <<'SCRIPT'
+cd /tmp
+git clone https://aur.archlinux.org/paru-bin
+cd paru-bin
+makepkg -si --noconfirm
+paru -S --needed --noconfirm firefox microsoft-edge-stable-bin rofi-greenclip input-remapper-git carapace-bin ttf-jetbrains-mono-nerd picom slack-desktop
+SCRIPT
+}
+
+#===============================#
+# Install Homebrew and Packages #
+#===============================#
+homebrew() {
+	command -v brew >/dev/null || (
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	)
+}
+
+homebrew_packages() {
+	homebrew
+	/home/linuxbrew/.linuxbrew/bin/brew install starship bat eza fd ripgrep fzf procs zoxide lazygit asdf luarocks helix neovim zellij
+	/home/linuxbrew/.linuxbrew/opt/fzf/install --key-bindings --completion --update-rc --no-bash --no-zsh
+}
+
+[[ $dotfiles -eq 1 ]] && dotfiles
+[[ $packages -eq 1 ]] && packages
+[[ $homebrew -eq 1 ]] && homebrew
+[[ $hbpackages -eq 1 ]] && homebrew_packages

@@ -1,0 +1,80 @@
+[[language]]
+name = "rust"
+comment-token = "//"
+
+[[language]]
+name = "html"
+indent = { tab-width = 2, unit = "  " }
+language-servers = ["emmet-ls"]
+formatter = { command = "emmet-ls" , args = ["--stdin"] }
+
+[[language]]
+name = "go"
+scope = "source.go"
+injection-regex = "go"
+file-types = ["go"]
+roots = ["Gopkg.toml", "go.mod"]
+auto-format = true
+comment-token = "//"
+indent = { tab-width = 4, unit = "\t" }
+formatter = { command = "goimports" }
+
+[[language]]
+name = "astro"
+language-servers = ["astro-ls"]
+formatter = { command = "astro-ls", args = ["--stdin"]}
+
+[[language]]
+name = "vue"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "vue"] }
+
+[[language]]
+name = "javascript"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+auto-format = true
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [ { name = "typescript-language-server", except-features = [ "format" ] }, "biome" ]
+
+[[language]]
+name = "json"
+language-servers = [ { name = "vscode-json-language-server", except-features = [ "format" ] }, "biome" ]
+
+[language-server]
+biome = { command = "biome", args = ["lsp-proxy"] }
+
+[language-server.rust]
+command = "rust-analyzer"
+args = [""]
+
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
+[language-server.emmet-ls]
+command = "emmet-ls"
+args = ["--stdio"]
+
+[language-server."astro-ls"]
+command = "astro-ls"
+args = ["--stdio"]
+
+[language-server.yaml-language-server.config.yaml]
+format = { enable = true }
+validation = true
+
+[language-server.yaml-language-server.config.yaml.schemas]
+"https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
+"https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" = "docker-compose.{yml,yaml}"
