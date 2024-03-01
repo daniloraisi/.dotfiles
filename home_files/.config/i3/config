@@ -331,7 +331,7 @@ bar {
 		focused_workspace  $aqua     $aqua      $darkgray
 		active_workspace   $darkgray $darkgray  $yellow
 		inactive_workspace $darkgray $darkgray  $yellow
-		urgent_workspace   $red      $red       $bg
+		urgent_workspace   $red      $red       $gray
 	}
 }
 
