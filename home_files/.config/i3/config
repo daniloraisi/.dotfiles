@@ -217,6 +217,8 @@ set $ws10 "10:󰒱"
 assign [class="(?i)xfce4-terminal" title="^(?i).*(?=Terminal).*$"] $ws1
 assign [class="(?i)microsoft-edge" title="^(?i).*(?=Personal).*$"] $ws2
 assign [class="(?i)microsoft-edge" title="^(?i).*(?=Work).*$"] $ws3
+assign [class="(?i)microsoft-edge" title="^(?i).*(?=Pessoal).*$"] $ws2
+assign [class="(?i)microsoft-edge" title="^(?i).*(?=Trabalho).*$"] $ws3
 assign [class="Thunar"] $ws4
 assign [class="Slack"] $ws10
 
